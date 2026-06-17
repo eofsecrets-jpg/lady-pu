@@ -193,8 +193,17 @@
     <div class="container">
       <p class="eyebrow">Из нашего ВК</p>
       <h2 class="section__title">Новости</h2>
-      <div id="vk_news"></div>
-      <p class="news__link"><a href="https://vk.com/lady_pu" target="_blank" rel="noopener">Все новости в ВК →</a></p>
+      <div class="vk-card">
+        <div class="vk-card__header">
+          <div class="vk-card__avatar" style="background-image:url('https://lh3.googleusercontent.com/d/1iG7NXPy8W6uON46UEuJBRWJaZWkAWEhx')"></div>
+          <div class="vk-card__info">
+            <h3 class="vk-card__name">Lady Pu</h3>
+            <p class="vk-card__subs">Студия красоты · Брянск</p>
+          </div>
+        </div>
+        <p class="vk-card__text">Маникюр, педикюр, шугаринг — следите за акциями и новостями в нашей группе ВКонтакте.</p>
+        <a href="https://vk.com/lady_pu" target="_blank" rel="noopener" class="btn btn--pink vk-card__btn">Открыть ВКонтакте →</a>
+      </div>
     </div>
   </section>
 
@@ -294,8 +303,6 @@
     </div>
   </footer>
 
-  <!-- VK Widget script -->
-  <script src="https://vk.com/js/api/openapi.js?169" type="text/javascript"></script>
   <script src="script.js"></script>
 </body>
 </html>
