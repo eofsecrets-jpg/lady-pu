@@ -47,21 +47,30 @@ document.querySelectorAll('.card, .gallery__item, .faq__item, .c-row, .perk').fo
   observer.observe(el);
 });
 
-// VK News Widget — встраиваем последние посты из группы lady_pu
-// Используем VK Open API без токена — публичные посты доступны через widget
-if (typeof VK !== 'undefined') {
-  VK.Widgets.Group("vk_news", {
-    mode: 4,              // режим 4 = только посты (без заголовка группы)
-    width: "auto",
-    height: 600,
-    color1: '0d0d0d',     // фон
-    color2: 'e03580',     // акцент (ссылки, кнопки)
-    color3: 'ffffff'      // текст
-  }, 149092082);          // club ID для lady_pu (vk.com/lady_pu)
-} else {
-  // Если VK API не загрузился — показываем ссылку
+// VK News Widget — последние посты из группы lady_pu
+function initVKWidget() {
   const vkNews = document.getElementById('vk_news');
-  if (vkNews) {
-    vkNews.innerHTML = '<p style="text-align:center;color:#888;padding:40px;">Новости загружаются... Если не появились — <a href="https://vk.com/lady_pu" target="_blank" rel="noopener" style="color:#e03580;">смотрите в нашем ВК</a></p>';
+  if (!vkNews) return;
+
+  // Проверяем загрузился ли VK API
+  if (typeof VK !== 'undefined' && VK.Widgets) {
+    VK.Widgets.Group("vk_news", {
+      mode: 3,              // посты + компактный заголовок
+      width: "auto",
+      height: 500,
+      color1: '0d0d0d',     // фон
+      color2: 'e03580',     // акцент
+      color3: 'ffffff'      // текст
+    }, 149092082);
+  } else {
+    // Fallback если VK API не загрузился
+    vkNews.innerHTML = '<p style="text-align:center;color:#888;padding:40px;">Не удалось загрузить виджет. <a href="https://vk.com/lady_pu" target="_blank" rel="noopener" style="color:#e03580;">Смотрите новости в нашем ВК →</a></p>';
   }
+}
+
+// Ждём загрузки VK API (он подключается асинхронно)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initVKWidget);
+} else {
+  initVKWidget();
 }
