@@ -55,13 +55,13 @@ function initVKWidget() {
   // Проверяем загрузился ли VK API
   if (typeof VK !== 'undefined' && VK.Widgets) {
     VK.Widgets.Group("vk_news", {
-      mode: 3,              // посты + компактный заголовок
+      mode: 4,              // лента постов + подписчики
       width: "auto",
       height: 500,
       color1: '0d0d0d',     // фон
       color2: 'e03580',     // акцент
       color3: 'ffffff'      // текст
-    }, 149092082);
+    }, 'lady_pu');
   } else {
     // Fallback если VK API не загрузился
     vkNews.innerHTML = '<p style="text-align:center;color:#888;padding:40px;">Не удалось загрузить виджет. <a href="https://vk.com/lady_pu" target="_blank" rel="noopener" style="color:#e03580;">Смотрите новости в нашем ВК →</a></p>';
